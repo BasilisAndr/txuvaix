@@ -34,6 +34,8 @@ LEXICON Root
 
 Nouns ;
 
+LEXICON NP
+@P.ABL.ran@%<np%>:@P.ABL.ran@ POSS ;
 
 LEXICON N
 @P.ABL.ran@%<n%>:@P.ABL.ran@ POSS ;
@@ -43,7 +45,7 @@ LEXICON POSS
 @P.ABL.nchen@%<px1sg%>:@P.ABL.nchen@%>%{Ӑ%}м PL ;
 @P.ABL.nchen@%<px2pl%>:@P.ABL.nchen@%>%{Ӑ%}р PL ;
 @P.ABL.nchen@%<px2sg%>:@P.ABL.nchen@%>%{Ӳ%} PL ;
-@P.ABL.nchen@%<px3sp%>:@P.ABL.nchen@%>%{и%} PL ;
+@P.ABL.nchen@%<px3sp%>:@P.ABL.nchen@%>и PL ;
 PL ;
 
 LEXICON PL
@@ -62,12 +64,12 @@ LEXICON CASES
 
 
 LEXICON Nouns
-Женя:Женя N ;
-Золотницкий:Золотницкий N ;
-Иванова:Иванова N ;
-Наталья:Наталья N ;
-Саша:Саша N ;
-Турку:Турку N ;
+Женя:Женя NP ;
+Золотницкий:Золотницкий NP ;
+Иванова:Иванова NP ;
+Наталья:Наталья NP ;
+Саша:Саша NP ;
+Турку:Турку NP ;
 автан:автан N ;
 автобус:автобус N ;
 аллея:аллея N ;

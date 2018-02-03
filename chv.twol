@@ -30,8 +30,6 @@ Back = А Ӑ Ы О У Я Ё Ю
 
 Rules
 
-"и/ӗ in px3sp"
-%{и%}:ӗ <=> :Cns %>: _ .#. ;
 
 "Ablative р/т"
 %{Р%}:т <=> [ л | р | н ] ( ь: ) %>: _ ;
@@ -46,7 +44,7 @@ Rules
 %{н%}:0 <=> Cns %>: _ ;
 
 "Back vowel harmony for archiphonemes {A}, {Ӑ} and {Ӳ}"
-Arch:B <=> Back: [ Cns: | %>: ]+ _ ;
+Arch:B <=> :Back [ Cns: | %>: ]+ _ ;
       except _ %>: :Vow ;
           _ %{´%}:0 %>: :Vow [ .#. | %>: | %{☭%}: ] ;
           %{м%}: %>: _ н ;
