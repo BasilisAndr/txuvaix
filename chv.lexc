@@ -26,6 +26,7 @@ Multichar_Symbols
 %{Р%}
 %{☭%}
 %{´%}
+%{и%}
 
 @P.ABL.nchen@ @R.ABL.nchen@ @P.ABL.ran@ @R.ABL.ran@
 
@@ -42,7 +43,7 @@ LEXICON POSS
 @P.ABL.nchen@%<px1sg%>:@P.ABL.nchen@%>%{Ӑ%}м PL ;
 @P.ABL.nchen@%<px2pl%>:@P.ABL.nchen@%>%{Ӑ%}р PL ;
 @P.ABL.nchen@%<px2sg%>:@P.ABL.nchen@%>%{Ӳ%} PL ;
-@P.ABL.nchen@%<px3sp%>:@P.ABL.nchen@%>и PL ;
+@P.ABL.nchen@%<px3sp%>:@P.ABL.nchen@%>%{и%} PL ;
 PL ;
 
 LEXICON PL
