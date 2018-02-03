@@ -1,34 +1,65 @@
 Alphabet
-  а ӑ е ё ӗ и о у ӳ ы э ю я б в г д ж з к л м н п р с ҫ т ф х ц ч ш щ й ь ъ
-  А Ӑ Е Ё Ӗ И О У Ӳ Ы Э Ю Я Б В Г Д Ж З К Л М Н П Р С Ҫ Т Ф Х Ц Ч Ш Щ Й Ь Ъ 
- %{A%}:а %{A%}:е
- %{Ă%}:ӑ %{Ă%}:ӗ %{Ă%}:0
- %{м%}:м %{м%}:0
 
+А Ӑ Б В Г Д Е Ӗ Ё Ж З И Й К Л М Н О П Р С Ҫ Т У Ӳ Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я
+а ӑ б в г д е ӗ ё ж з и й к л м н о п р с ҫ т у ӳ ф х ц ч ш щ ъ ы ь э ю я
+
+%{А%}:а %{А%}:е %{А%}:0
+%{Ӑ%}:ӑ %{Ӑ%}:ӗ %{Ӑ%}:0
+%{Ӳ%}:у %{Ӳ%}:ӳ %{Ӳ%}:0
+%{н%}:н %{н%}:0
+%{м%}:м %{м%}:0
+%{Р%}:р %{Р%}:т
+%>:0            ! Morpheme boundary
+%{☭%}:0         ! Trigger for loan word phonology
+%{´%}:0         ! Accent on the previous vowel
 ;
 
-Sets 
+Sets
 
-BackVow = ӑ а ы о у я ё ю ;
+Vow   = А Ӑ Е Ӗ Ё И О У Ӳ Ы Э Ю Я %{А%} %{Ӑ%} %{Ӳ%}
+        а ӑ е ӗ ё и о у ӳ ы э ю я ;
 
-FrontVow = ӗ э и ӳ ; 
+Yot = Е е Ё ё Ю ю Я я ;
 
-Cns = б в г д ж з к л м н п р с ҫ т ф х ц ч ш щ й ь ъ ; 
+Cns   = Б В Г Д Ж З Й К Л М Н П Р С Ҫ Т Ф Х Ц Ч Ш Щ
+        б в г д ж з й к л м н п р с ҫ т ф х ц ч ш щ ;
 
-ArchiCns = %{м%} ;
+Back = А Ӑ Ы О У Я Ё Ю
+       ӑ а ы о у я ё ю %{ъ%} ;
 
-Rules 
+Rules
 
-"Remove morpheme boundary"
-%>:0 <=> _ ;
 
-"Back vowel harmony for archiphoneme {A}"
-%{A%}:а <=> BackVow: [ Cns: | %>: ]+ _ ; 
 
-"Back vowel harmony for archiphoneme {Ă}"
-%{Ă%}:ӑ <=> BackVow: [ ArchiCns: | Cns: | %>: ]+ _ ;
-        except
-                                     %{м%}: %>:  _ н ; 
+"Ablative р/т"
+%{Р%}:т <=> [ л | р | н ] ( ь: ) %>: _ ;
 
-"Non surface {Ã} in plural genitive"
-%{Ă%}:0 <=> %{м%}: %>: _ н ; 
+"ь deletion"
+ь:0 <=> _ %>: ;
+
+"м with genitive"
+%{м%}:0 <=> _ %>: ( :0 ) [ н | %{н%}:н ] ;
+
+"н in suffixes"
+%{н%}:0 <=> Cns %>: _ ;
+
+"Back vowel harmony for archiphonemes {A}, {Ӑ} and {Ӳ}"
+Arch:B <=> Back: [ Cns: | %>: ]+ _ ;
+      except _ %>: :Vow ;
+          _ %{´%}:0 %>: :Vow [ .#. | %>: | %{☭%}: ] ;
+          %{м%}: %>: _ н ;
+      where
+          Arch in ( %{А%} %{Ӑ%} %{Ӳ%} )
+          B    in ( а ӑ у ) matched ;
+
+"Vowel drop at morpheme boundary"
+! ш о с с е:0 >:0 ӳ
+V:0 <=> _ %>: :Vow ;
+      _ %{´%}:0 %>: :Vow [ .#. | %>: | %{☭%}: ] ;
+      %{м%}: %>: _ н ;
+      where V in Vow ;
+
+"Vowel drop at accentuated morpheme boundary"
+! ш о с с е >:0 ӗ:0 н
+V:0 <=> :Vow %{´%}:0 %>: _ [ : - .#. - %>: - %{☭%}: - %{´%}: ] ;
+      where V in Vow ;
